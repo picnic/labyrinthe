@@ -20,7 +20,7 @@ class Labyrinthe(object):
         (nx, ny) = (self._position[0] + self._direction[0], self._position[1] + self._direction[1])
         if nx == -1 or ny == -1 or nx == self._largeur or ny == self._hauteur:
             print("Attention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
-        elif self._cases[nx][ny] == MUR:
+        elif self._cases[ny][nx] == MUR:
             print("Attention : tu as foncé dans un mur !")
         else:
             self._position = (nx, ny)
