@@ -88,14 +88,20 @@ class Labyrinthe(object):
     def regarder_a_gauche(self) -> int:
         x = self._position[0] + self._direction[1]
         y = self._position[1] - self._direction[0]
+        if x < 0 or y < 0 or x >= self._largeur or y >= self._hauteur:
+            return MUR
         return self._cases[y][x]
 
     def regarder_a_droite(self) -> int:
         x = self._position[0] - self._direction[1]
         y = self._position[1] + self._direction[0]
+        if x < 0 or y < 0 or x >= self._largeur or y >= self._hauteur:
+            return MUR
         return self._cases[y][x]
 
     def regarder_devant(self) -> int:
         x = self._position[0] + self._direction[0]
         y = self._position[1] + self._direction[1]
+        if x < 0 or y < 0 or x >= self._largeur or y >= self._hauteur:
+            return MUR
         return self._cases[y][x]
