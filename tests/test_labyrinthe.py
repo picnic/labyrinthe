@@ -240,3 +240,46 @@ class TestLabyrinthe(unittest.TestCase):
     def test_texte_labyrinthe_direction_bas(self) -> None:
         self.laby._direction = (0, 1)
         self.assertEqual(self.laby._texte_labyrinthe(), '█████\n█↓ ██\n█  ██\n█ ███')
+
+    def test_regarder_a_gauche(self) -> None:
+        self.laby._direction = (1, 0)
+        self.laby._cases[0][1] = 2
+        self.assertEqual(self.laby.regarder_a_gauche(), 2)
+        self.laby._direction = (0, 1)
+        self.laby._cases[1][2] = 3
+        self.assertEqual(self.laby.regarder_a_gauche(), 3)
+        self.laby._direction = (-1, 0)
+        self.laby._cases[2][1] = 4
+        self.assertEqual(self.laby.regarder_a_gauche(), 4)
+        self.laby._direction = (0, -1)
+        self.laby._cases[1][0] = 5
+        self.assertEqual(self.laby.regarder_a_gauche(), 5)
+
+    def test_regarder_a_droite(self):
+        self.laby._direction = (1, 0)
+        self.laby._cases[2][1] = 6
+        self.assertEqual(self.laby.regarder_a_droite(), 6)
+        self.laby._direction = (0, 1)
+        self.laby._cases[1][0] = 7
+        self.assertEqual(self.laby.regarder_a_droite(), 7)
+        self.laby._direction = (-1, 0)
+        self.laby._cases[0][1] = 8
+        self.assertEqual(self.laby.regarder_a_droite(), 8)
+        self.laby._direction = (0, -1)
+        self.laby._cases[1][2] = 9
+        self.assertEqual(self.laby.regarder_a_droite(), 9)
+
+    def test_regarder_devant(self):
+        self.laby._direction = (1, 0)
+        self.laby._cases[1][2] = 6
+        self.assertEqual(self.laby.regarder_devant(), 6)
+        self.laby._direction = (0, 1)
+        self.laby._cases[2][1] = 7
+        self.assertEqual(self.laby.regarder_devant(), 7)
+        self.laby._direction = (-1, 0)
+        self.laby._cases[1][0] = 8
+        self.assertEqual(self.laby.regarder_devant(), 8)
+        self.laby._direction = (0, -1)
+        self.laby._cases[0][1] = 9
+        self.assertEqual(self.laby.regarder_devant(), 9)
+

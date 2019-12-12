@@ -84,3 +84,18 @@ class Labyrinthe(object):
             if y != self._hauteur - 1:
                 texte += "\n"
         return texte
+
+    def regarder_a_gauche(self) -> int:
+        x = self._position[0] + self._direction[1]
+        y = self._position[1] - self._direction[0]
+        return self._cases[y][x]
+
+    def regarder_a_droite(self) -> int:
+        x = self._position[0] - self._direction[1]
+        y = self._position[1] + self._direction[0]
+        return self._cases[y][x]
+
+    def regarder_devant(self) -> int:
+        x = self._position[0] + self._direction[0]
+        y = self._position[1] + self._direction[1]
+        return self._cases[y][x]
