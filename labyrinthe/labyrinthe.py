@@ -15,6 +15,10 @@ class Labyrinthe(object):
         self._position: Tuple[int, int] = (1, 1)
         self._largeur = len(self._cases[0])
         self._hauteur = len(self._cases)
+        if self._affichage:
+            print(self._texte_labyrinthe())
+        if self._attente > 0:
+            time.sleep(self._attente)
 
     def avancer(self) -> None:
         (nx, ny) = (self._position[0] + self._direction[0], self._position[1] + self._direction[1])

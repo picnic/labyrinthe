@@ -21,10 +21,34 @@ class TestLabyrinthe(unittest.TestCase):
         self.assertEqual(self.laby._position, (1, 1))
         self.assertEqual(self.laby._direction, (1, 0))
 
-    def test_constructor_default_values(self) -> None:
+    @patch('builtins.print')
+    @patch('time.sleep')
+    def test_constructor_valeurs_par_defaut(self, sleep_mock: MagicMock, print_mock: MagicMock) -> None:
         laby = Labyrinthe(self.cases)
         self.assertEqual(laby._affichage, True)
         self.assertEqual(laby._attente, 1)
+
+    @patch('labyrinthe.labyrinthe.Labyrinthe._texte_labyrinthe', return_value='fake')
+    @patch('builtins.print')
+    def test_constructor_avec_affichage(self, print_mock: MagicMock, texte_labyrinthe: MagicMock) -> None:
+        Labyrinthe(self.cases, affichage=True, attente=0)
+        texte_labyrinthe.assert_called_with()
+        print_mock.assert_called_with('fake')
+
+    @patch('builtins.print')
+    def test_constructor_sans_affichage(self, print_mock: MagicMock) -> None:
+        Labyrinthe(self.cases, affichage=False, attente=0)
+        print_mock.assert_not_called()
+
+    @patch('time.sleep')
+    def test_constructor_avec_attente(self, sleep_mock: MagicMock) -> None:
+        Labyrinthe(self.cases, affichage=False, attente=2)
+        sleep_mock.assert_called_with(2)
+
+    @patch('time.sleep')
+    def test_constructor_sans_attente(self, sleep_mock: MagicMock) -> None:
+        Labyrinthe(self.cases, affichage=False, attente=0)
+        sleep_mock.assert_not_called()
 
     def test_avancer_vide(self) -> None:
         """Teste la méthode avancer dans les 4 directions vers une case vide"""
