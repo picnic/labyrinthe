@@ -82,7 +82,7 @@ def generer_labyrinthe_aleatoire(largeur: int, hauteur: int) -> List[List[Case]]
             cases_visitees.add(case_courante)
         elif pile_de_cases:
             case_courante = pile_de_cases.pop()
-    labyrinthe[hauteur - 1][largeur - 2].mur_bas = False
+    labyrinthe[hauteur - 1][largeur - 1].mur_bas = False
     return labyrinthe
 
 

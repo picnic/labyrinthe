@@ -75,7 +75,7 @@ class TestLabyrinthe(unittest.TestCase):
         self.laby._affichage = True
         self.laby.avancer()
         texte_labyrinthe.assert_called_with()
-        print_mock.assert_called_with('╳╳╳╳\n╳→ ╳\n╳  ╳\n╳╳╳╳')
+        print_mock.assert_called_with('\n\n╳╳╳╳\n╳→ ╳\n╳  ╳\n╳╳╳╳')
 
     @patch('builtins.print')
     def test_avancer_sans_affichage(self, print_mock: MagicMock) -> None:
@@ -99,22 +99,22 @@ class TestLabyrinthe(unittest.TestCase):
         self.laby._position = (2, 2)
         self.laby._direction = (1, 0)
         self.laby.avancer()
-        print_mock.assert_called_with("Attention : tu as foncé dans un mur !")
+        print_mock.assert_called_with("\nAttention : tu as foncé dans un mur !")
         self.assertEqual(self.laby._position, (2, 2))
         self.laby._position = (2, 2)
         self.laby._direction = (0, 1)
         self.laby.avancer()
-        print_mock.assert_called_with("Attention : tu as foncé dans un mur !")
+        print_mock.assert_called_with("\nAttention : tu as foncé dans un mur !")
         self.assertEqual(self.laby._position, (2, 2))
         self.laby._position = (1, 1)
         self.laby._direction = (0, -1)
         self.laby.avancer()
-        print_mock.assert_called_with("Attention : tu as foncé dans un mur !")
+        print_mock.assert_called_with("\nAttention : tu as foncé dans un mur !")
         self.assertEqual(self.laby._position, (1, 1))
         self.laby._position = (1, 1)
         self.laby._direction = (-1, 0)
         self.laby.avancer()
-        print_mock.assert_called_with("Attention : tu as foncé dans un mur !")
+        print_mock.assert_called_with("\nAttention : tu as foncé dans un mur !")
         self.assertEqual(self.laby._position, (1, 1))
 
     @patch('builtins.print')
@@ -127,25 +127,25 @@ class TestLabyrinthe(unittest.TestCase):
         laby._position = (1, 1)
         laby._direction = (1, 0)
         laby.avancer()
-        print_mock.assert_called_with("Attention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
+        print_mock.assert_called_with("\nAttention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
         self.assertEqual(laby._position, (1, 1))
 
         laby._position = (1, 1)
         laby._direction = (0, 1)
         laby.avancer()
-        print_mock.assert_called_with("Attention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
+        print_mock.assert_called_with("\nAttention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
         self.assertEqual(laby._position, (1, 1))
 
         laby._position = (0, 0)
         laby._direction = (0, -1)
         laby.avancer()
-        print_mock.assert_called_with("Attention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
+        print_mock.assert_called_with("\nAttention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
         self.assertEqual(laby._position, (0, 0))
 
         laby._position = (0, 0)
         laby._direction = (-1, 0)
         laby.avancer()
-        print_mock.assert_called_with("Attention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
+        print_mock.assert_called_with("\nAttention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
         self.assertEqual(laby._position, (0, 0))
 
     def test_tourner_a_gauche(self) -> None:
@@ -169,7 +169,7 @@ class TestLabyrinthe(unittest.TestCase):
         self.laby._affichage = True
         self.laby.tourner_a_gauche()
         texte_labyrinthe.assert_called_with()
-        print_mock.assert_called_with('fake')
+        print_mock.assert_called_with('\n\nfake')
 
     @patch('builtins.print')
     def test_tourner_a_gauche_sans_affichage(self, print_mock: MagicMock) -> None:
@@ -208,7 +208,7 @@ class TestLabyrinthe(unittest.TestCase):
         self.laby._affichage = True
         self.laby.tourner_a_droite()
         texte_labyrinthe.assert_called_with()
-        print_mock.assert_called_with('fake')
+        print_mock.assert_called_with('\n\nfake')
 
     @patch('builtins.print')
     def test_tourner_a_droite_sans_affichage(self, print_mock: MagicMock) -> None:
@@ -230,12 +230,12 @@ class TestLabyrinthe(unittest.TestCase):
     def test_sortir_bord(self, print_mock: MagicMock) -> None:
         self.laby._position = (1, 3)
         self.laby.sortir()
-        print_mock.assert_called_with("Bravo ! Vous avez réussi à sortir du labyrinthe ! :D")
+        print_mock.assert_called_with("\nBravo ! Vous avez réussi à sortir du labyrinthe ! :D")
 
     @patch('builtins.print')
     def test_sortir_echec(self, print_mock: MagicMock) -> None:
         self.laby.sortir()
-        print_mock.assert_called_with("Rejoignez la sortie avant d’utiliser la méthode sortir() !")
+        print_mock.assert_called_with("\nRejoignez la sortie avant d’utiliser la méthode sortir() !")
 
     def test_obtenir_largeur(self) -> None:
         self.assertEqual(self.laby.obtenir_largeur(), 5)

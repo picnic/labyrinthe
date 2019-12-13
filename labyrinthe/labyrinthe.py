@@ -23,20 +23,20 @@ class Labyrinthe(object):
     def avancer(self) -> None:
         (nx, ny) = (self._position[0] + self._direction[0], self._position[1] + self._direction[1])
         if nx == -1 or ny == -1 or nx == self._largeur or ny == self._hauteur:
-            print("Attention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
+            print("\nAttention : tu es au bord du labyrinthe. Il faut utiliser la méthode sortir() !")
         elif self._cases[ny][nx] == MUR:
-            print("Attention : tu as foncé dans un mur !")
+            print("\nAttention : tu as foncé dans un mur !")
         else:
             self._position = (nx, ny)
         if self._affichage:
-            print(self._texte_labyrinthe())
+            print('\n\n' + self._texte_labyrinthe())
         if self._attente > 0:
             time.sleep(self._attente)
 
     def tourner_a_gauche(self) -> None:
         self._direction = (self._direction[1], -self._direction[0])
         if self._affichage:
-            print(self._texte_labyrinthe())
+            print('\n\n' + self._texte_labyrinthe())
         if self._attente > 0:
             time.sleep(self._attente)
 
@@ -44,7 +44,7 @@ class Labyrinthe(object):
     def tourner_a_droite(self) -> None:
         self._direction = (-self._direction[1], self._direction[0])
         if self._affichage:
-            print(self._texte_labyrinthe())
+            print('\n\n' + self._texte_labyrinthe())
         if self._attente > 0:
             time.sleep(self._attente)
 
@@ -52,9 +52,9 @@ class Labyrinthe(object):
         sur_un_bord = self._position[0] == 0 or self._position[0] == self._largeur - 1 or \
                       self._position[1] == 0 or self._position[1] == self._hauteur - 1
         if sur_un_bord:
-            print("Bravo ! Vous avez réussi à sortir du labyrinthe ! :D")
+            print("\nBravo ! Vous avez réussi à sortir du labyrinthe ! :D")
         else:
-            print("Rejoignez la sortie avant d’utiliser la méthode sortir() !")
+            print("\nRejoignez la sortie avant d’utiliser la méthode sortir() !")
 
     def obtenir_largeur(self) -> int:
         return self._largeur
