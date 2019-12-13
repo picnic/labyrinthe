@@ -73,7 +73,7 @@ class Labyrinthe(object):
         for y, ligne in enumerate(self._cases):
             for x, case in enumerate(ligne):
                 if case == MUR:
-                    texte += "█"
+                    texte += "╳"
                 elif self._position == (x, y):
                     if self._direction == (1, 0):
                         texte += "→"

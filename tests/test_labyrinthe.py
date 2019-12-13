@@ -69,13 +69,13 @@ class TestLabyrinthe(unittest.TestCase):
         self.laby.avancer()
         self.assertEqual(self.laby._position, (1, 2))
 
-    @patch('labyrinthe.labyrinthe.Labyrinthe._texte_labyrinthe', return_value='████\n█→ █\n█  █\n████')
+    @patch('labyrinthe.labyrinthe.Labyrinthe._texte_labyrinthe', return_value='╳╳╳╳\n╳→ ╳\n╳  ╳\n╳╳╳╳')
     @patch('builtins.print')
     def test_avancer_avec_affichage(self, print_mock: MagicMock, texte_labyrinthe: MagicMock) -> None:
         self.laby._affichage = True
         self.laby.avancer()
         texte_labyrinthe.assert_called_with()
-        print_mock.assert_called_with('████\n█→ █\n█  █\n████')
+        print_mock.assert_called_with('╳╳╳╳\n╳→ ╳\n╳  ╳\n╳╳╳╳')
 
     @patch('builtins.print')
     def test_avancer_sans_affichage(self, print_mock: MagicMock) -> None:
@@ -251,19 +251,19 @@ class TestLabyrinthe(unittest.TestCase):
 
     def test_texte_labyrinthe_direction_droite(self) -> None:
         self.laby._direction = (1, 0)
-        self.assertEqual(self.laby._texte_labyrinthe(), '█████\n█→ ██\n█  ██\n█ ███')
+        self.assertEqual(self.laby._texte_labyrinthe(), '╳╳╳╳╳\n╳→ ╳╳\n╳  ╳╳\n╳ ╳╳╳')
 
     def test_texte_labyrinthe_direction_gauche(self) -> None:
         self.laby._direction = (-1, 0)
-        self.assertEqual(self.laby._texte_labyrinthe(), '█████\n█← ██\n█  ██\n█ ███')
+        self.assertEqual(self.laby._texte_labyrinthe(), '╳╳╳╳╳\n╳← ╳╳\n╳  ╳╳\n╳ ╳╳╳')
 
     def test_texte_labyrinthe_direction_haut(self) -> None:
         self.laby._direction = (0, -1)
-        self.assertEqual(self.laby._texte_labyrinthe(), '█████\n█↑ ██\n█  ██\n█ ███')
+        self.assertEqual(self.laby._texte_labyrinthe(), '╳╳╳╳╳\n╳↑ ╳╳\n╳  ╳╳\n╳ ╳╳╳')
 
     def test_texte_labyrinthe_direction_bas(self) -> None:
         self.laby._direction = (0, 1)
-        self.assertEqual(self.laby._texte_labyrinthe(), '█████\n█↓ ██\n█  ██\n█ ███')
+        self.assertEqual(self.laby._texte_labyrinthe(), '╳╳╳╳╳\n╳↓ ╳╳\n╳  ╳╳\n╳ ╳╳╳')
 
     def test_regarder_a_gauche(self) -> None:
         self.laby._direction = (1, 0)
